@@ -15,14 +15,19 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-import { LoginComponent, HomeComponent } from '@components/index';
+import {
+  LoginComponent,
+  ApplicationComponent,
+  UsersComponent
+} from '@components/index';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    ApplicationComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

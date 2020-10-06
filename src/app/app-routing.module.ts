@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent, LoginComponent, homeRoutes } from '@components/index';
+import {
+  ApplicationComponent,
+  LoginComponent,
+  applicationRoutes
+} from '@components/index';
 
 const routes: Routes = [
   {
@@ -8,9 +12,9 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'home',
-    component: HomeComponent,
-    children: homeRoutes
+    path: 'app',
+    component: ApplicationComponent,
+    children: applicationRoutes
   },
   { path: '**', redirectTo: 'login' }
 ];
