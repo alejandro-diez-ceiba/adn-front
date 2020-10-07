@@ -12,6 +12,7 @@
       ],
       "@components/*": ["app/components/*"],
       "@core/*": ["app/core/*"],
+      "@shared/*": ["app/shared/*"],
       "@store/*": ["app/store/*"]
     },
     "outDir": "./dist/out-tsc",

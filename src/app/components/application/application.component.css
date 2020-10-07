@@ -11,5 +11,5 @@
 .container {
     width: 100%;
     max-width: 90%;
-    margin: auto;
+    margin: 0 auto 20px auto;
 }

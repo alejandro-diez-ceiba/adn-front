@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { UsersComponent } from './components/users/users.component';
+import { CrudComponent } from '@shared/index';
 
 export const applicationRoutes: Routes = [
-    { path: 'users', component: UsersComponent },
+    { path: 'users', component: CrudComponent },
 ];

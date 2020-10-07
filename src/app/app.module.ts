@@ -14,12 +14,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 import {
   LoginComponent,
-  ApplicationComponent,
-  UsersComponent
+  ApplicationComponent
 } from '@components/index';
+
+import { CrudComponent } from '@shared/index';
 
 
 @NgModule({
@@ -27,7 +30,7 @@ import {
     AppComponent,
     LoginComponent,
     ApplicationComponent,
-    UsersComponent
+    CrudComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,9 @@ import {
     MatCardModule,
     MatInputModule,
     MatButtonModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTableModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
