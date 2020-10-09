@@ -8,29 +8,19 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import { ReactiveFormsModule } from '@angular/forms';
 
-import { MatCardModule } from '@angular/material/card';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatTableModule } from '@angular/material/table';
-import { MatIconModule } from '@angular/material/icon';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 
-import {
-  LoginComponent,
-  ApplicationComponent
-} from '@components/index';
-
-import { CrudComponent } from '@shared/index';
+import { LoginComponent } from './feature/login/login.component';
+import { ApplicationComponent } from './feature/application/application.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ApplicationComponent,
-    CrudComponent
+    ApplicationComponent
   ],
   imports: [
     BrowserModule,
@@ -39,13 +29,8 @@ import { CrudComponent } from '@shared/index';
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
-    ReactiveFormsModule,
-    MatCardModule,
-    MatInputModule,
-    MatButtonModule,
-    MatProgressBarModule,
-    MatTableModule,
-    MatIconModule
+    CoreModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
