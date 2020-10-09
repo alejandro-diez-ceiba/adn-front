@@ -1,6 +1,9 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CrudComponent } from './crud.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 describe('CrudComponent', () => {
   let component: CrudComponent;
@@ -8,7 +11,9 @@ describe('CrudComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CrudComponent ]
+      imports: [MatTableModule, MatIconModule, MatButtonModule],
+      declarations: [CrudComponent],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   });
