@@ -25,7 +25,6 @@ node {
 
     stage('Test') {
         sh 'ng test --browsers ChromeHeadless --progress=false --watch false'
-        junit '**/test-results.xml'
     }
 
     stage('Lint') {
