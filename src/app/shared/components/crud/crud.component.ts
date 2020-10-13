@@ -1,21 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Module } from './../../models/module.model';
+import { modulesApp } from './../../constants/module.constants';
+import { CrudService } from '@app/core';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-crud',
   templateUrl: './crud.component.html',
   styleUrls: ['./crud.component.css']
 })
-export class CrudComponent {
+export class CrudComponent implements OnInit {
 
-  data: any = [
-    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' }
-  ];
+  data = [];
+  module: Module;
 
-  displayedColumns: string[] = ['name', 'weight', 'symbol', 'position'];
-  columnsToDisplay: string[] = [...this.displayedColumns, 'action'];
+  constructor(
+    private readonly router: Router,
+    private readonly crud: CrudService
+  ) { }
+
+  ngOnInit(): void {
+    const path = this.router.url.split('/')[2];
+    this.module = modulesApp.find((module) => module.type === path);
+
+    this.crud.findAll(this.module.type).pipe(
+      tap((data) => this.data = data)
+    ).subscribe();
+  }
+
+  get showTable(): boolean {
+    return this.data.length > 0;
+  }
 
 }
