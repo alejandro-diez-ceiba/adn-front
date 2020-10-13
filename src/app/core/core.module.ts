@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { BaseService } from './base.service';
 import { CrudService } from './crud.service';
+import { TypeDocumentService } from './type-document.service';
 
 @NgModule({
   declarations: [],
@@ -12,7 +13,8 @@ import { CrudService } from './crud.service';
   ],
   providers: [
     BaseService,
-    CrudService
+    CrudService,
+    TypeDocumentService
   ]
 })
 export class CoreModule { }

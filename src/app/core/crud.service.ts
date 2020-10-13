@@ -16,8 +16,8 @@ export class CrudService extends BaseService {
     return this.http.get<T[]>(`${this.pathService}/${path}`);
   }
 
-  /* findById(path: string, id: number) {
-
-  } */
+  findById<T>(path: string, id: number): Observable<T> {
+    return this.http.get<T>(`${this.pathService}/${path}/${id}`);
+  }
 
 }
