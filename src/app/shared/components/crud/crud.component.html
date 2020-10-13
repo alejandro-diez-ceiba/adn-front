@@ -4,12 +4,12 @@
     </div>
     <div class="colu">
         <div class="button-add-container">
-            <button mat-raised-button color="primary" class="btn-action">
+            <button mat-raised-button *ngIf="!isNew" color="primary" (click)="newElement()" class="btn-action">
                 Nuevo
             </button>
-            <!-- <button mat-raised-button color="primary">
+            <button mat-raised-button *ngIf="isNew" color="primary" (click)="cancel()" class="btn-action">
                 Cancelar
-            </button> -->
+            </button>
         </div>
     </div>
 </div>
@@ -36,3 +36,7 @@
     <tr mat-header-row *matHeaderRowDef="module.columnsToDisplay"></tr>
     <tr mat-row *matRowDef="let row; columns: module.columnsToDisplay;"></tr>
 </table>
+
+<div class="line" *ngIf="isNew" [ngSwitch]="module.type">
+    <app-user *ngSwitchCase="'user'"></app-user>
+</div>

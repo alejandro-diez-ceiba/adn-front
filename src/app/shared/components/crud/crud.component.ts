@@ -13,6 +13,7 @@ import { tap } from 'rxjs/operators';
 export class CrudComponent implements OnInit {
 
   data = [];
+  isNew = false;
   module: Module;
 
   constructor(
@@ -30,7 +31,16 @@ export class CrudComponent implements OnInit {
   }
 
   get showTable(): boolean {
-    return this.data.length > 0;
+    return this.data.length > 0 && !this.isNew;
+  }
+
+  newElement(): void {
+    this.isNew = true;
+
+  }
+
+  cancel(): void {
+    this.isNew = false;
   }
 
 }
