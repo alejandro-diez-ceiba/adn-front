@@ -9,14 +9,17 @@
                 <input matInput [matDatepicker]="picker1" formControlName="transaction">
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
+                <mat-error *ngIf="form.get('transaction').hasError('required')">
+                    El campo es obligatorio
+                </mat-error>
             </mat-form-field>
 
-            <div class="full-width">
-                <section class="example-section" formControlName="entryOrExit">
+            <div class="full-width" style="margin-bottom: 10px;">
+                <section class="example-section">
                     <label class="example-margin">Tipo:</label>
-                    <mat-radio-group>
-                        <mat-radio-button class="example-margin" value="true">Entrada</mat-radio-button>
-                        <mat-radio-button class="example-margin" value="false">Salida</mat-radio-button>
+                    <mat-radio-group formControlName="entryOrExit">
+                        <mat-radio-button class="example-margin" [value]="true">Entrada</mat-radio-button>
+                        <mat-radio-button class="example-margin" [value]="false">Salida</mat-radio-button>
                     </mat-radio-group>
                 </section>
             </div>
@@ -24,39 +27,60 @@
             <div class="full-width">
                 <mat-form-field class="media-width">
                     <mat-label>Cantidad</mat-label>
-                    <input matInput formControlName="quantity">
+                    <input autocomplete="off" matInput formControlName="quantity">
+                    <mat-error *ngIf="form.get('quantity').hasError('required')">
+                        El campo es obligatorio
+                    </mat-error>
+                    <mat-error *ngIf="form.get('quantity').hasError('pattern')">
+                        El campo solo recibe valores numéricos
+                    </mat-error>
                 </mat-form-field>
             </div>
 
             <div class="full-width">
                 <mat-form-field class="media-width">
                     <mat-label>Precio</mat-label>
-                    <input matInput formControlName="price">
+                    <input autocomplete="off" matInput formControlName="price">
+                    <mat-error *ngIf="form.get('price').hasError('required')">
+                        El campo es obligatorio
+                    </mat-error>
+                    <mat-error *ngIf="form.get('price').hasError('pattern')">
+                        El campo solo recibe valores numéricos con 2 decimales
+                    </mat-error>
                 </mat-form-field>
             </div>
 
             <div class="full-width">
-                <mat-form-field appearance="fill" style="margin-right: 10px;">
+                <mat-form-field *ngIf="isEntry" class="media-width" appearance="fill">
                     <mat-label>Proveedor</mat-label>
                     <mat-select formControlName="provider">
                         <mat-option *ngFor="let type of provider" [value]="type.id">{{ type.fullName }}</mat-option>
                     </mat-select>
+                    <mat-error *ngIf="form.get('provider').hasError('required')">
+                        El campo es obligatorio
+                    </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="fill">
+                <mat-form-field *ngIf="!isEntry" class="media-width" appearance="fill">
                     <mat-label>Cliente</mat-label>
                     <mat-select formControlName="customer">
                         <mat-option *ngFor="let type of customer" [value]="type.id">{{ type.document }} - {{ type.fullName }}</mat-option>
                     </mat-select>
+                    <mat-error *ngIf="form.get('customer').hasError('required')">
+                        El campo es obligatorio
+                    </mat-error>
                 </mat-form-field>
             </div>
 
             <div class="full-width">
-                <mat-form-field appearance="fill" style="margin-right: 10px;">
+                <mat-form-field appearance="fill" class="media-width">
                     <mat-label>Videojuego</mat-label>
                     <mat-select formControlName="game">
                         <mat-option *ngFor="let type of game" [value]="type.id">{{ type.name }} - ({{ type.platform.name }}) - ({{ type.language.name }})</mat-option>
                     </mat-select>
+                    <mat-error *ngIf="form.get('game').hasError('required')">
+                        El campo es obligatorio
+                    </mat-error>
                 </mat-form-field>
             </div>
 
