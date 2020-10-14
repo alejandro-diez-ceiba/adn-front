@@ -1,3 +1,5 @@
+import { Game } from '../models/game.model';
+import { Kardex } from '../models/kardex.model';
 import { Module } from '../models/module.model';
 
 export const modulesApp: Module[] = [
@@ -73,14 +75,37 @@ export const modulesApp: Module[] = [
             {
                 name: 'price',
                 title: 'Precio'
+            },
+            {
+                name: 'platform',
+                title: 'Plataforma'
+            },
+            {
+                name: 'language',
+                title: 'Idioma'
             }
         ],
-        columnsToDisplay: ['name', 'price', 'action']
+        columnsToDisplay: ['name', 'price', 'platform', 'language', 'action'],
+        mapData: (game: Game) => {
+            return {
+                ...game,
+                platform: game.platform.name,
+                language: game.language.name
+            };
+        }
     },
     {
         type: 'kardex',
         title: 'Kardex',
         displayedColumns: [
+            {
+                name: 'type',
+                title: 'Tipo'
+            },
+            {
+                name: 'game',
+                title: 'Videojuego'
+            },
             {
                 name: 'quantity',
                 title: 'Cantidad'
@@ -90,6 +115,13 @@ export const modulesApp: Module[] = [
                 title: 'Precio'
             }
         ],
-        columnsToDisplay: ['quantity', 'price', 'action']
+        columnsToDisplay: ['type', 'game', 'quantity', 'price', 'action'],
+        mapData: (kardex: Kardex) => {
+            return {
+                ...kardex,
+                type: (kardex.entryOrExit) ? 'Entrada' : 'Salida',
+                game: kardex.game.name
+            };
+        }
     }
 ];

@@ -10,4 +10,5 @@ export interface Module {
     title: string;
     displayedColumns: DisplayColum[];
     columnsToDisplay: string[];
+    mapData?: any;
 }

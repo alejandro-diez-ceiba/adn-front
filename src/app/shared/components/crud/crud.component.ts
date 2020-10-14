@@ -38,7 +38,10 @@ export class CrudComponent implements OnInit {
 
   private loadElements(): void {
     this.crud.findAll(this.module.type).pipe(
-      tap((data) => this.data = data)
+      tap((data) => (this.module.mapData)
+        ? (this.data = data.map((element) => this.module.mapData(element)))
+        : (this.data = data)
+      )
     ).subscribe();
   }
 
