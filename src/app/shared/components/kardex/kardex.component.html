@@ -1,0 +1,69 @@
+<mat-spinner *ngIf="!ready" class="small"></mat-spinner>
+<mat-card *ngIf="ready">
+
+    <mat-card-content>
+        <form [formGroup]="form">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de Transacción</mat-label>
+                <input matInput [matDatepicker]="picker1" formControlName="transaction">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+
+            <div class="full-width">
+                <section class="example-section" formControlName="entryOrExit">
+                    <label class="example-margin">Tipo:</label>
+                    <mat-radio-group>
+                        <mat-radio-button class="example-margin" value="true">Entrada</mat-radio-button>
+                        <mat-radio-button class="example-margin" value="false">Salida</mat-radio-button>
+                    </mat-radio-group>
+                </section>
+            </div>
+
+            <div class="full-width">
+                <mat-form-field class="media-width">
+                    <mat-label>Cantidad</mat-label>
+                    <input matInput formControlName="quantity">
+                </mat-form-field>
+            </div>
+
+            <div class="full-width">
+                <mat-form-field class="media-width">
+                    <mat-label>Precio</mat-label>
+                    <input matInput formControlName="price">
+                </mat-form-field>
+            </div>
+
+            <div class="full-width">
+                <mat-form-field appearance="fill" style="margin-right: 10px;">
+                    <mat-label>Proveedor</mat-label>
+                    <mat-select formControlName="provider">
+                        <mat-option *ngFor="let type of provider" [value]="type.id">{{ type.fullName }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Cliente</mat-label>
+                    <mat-select formControlName="customer">
+                        <mat-option *ngFor="let type of customer" [value]="type.id">{{ type.document }} - {{ type.fullName }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="full-width">
+                <mat-form-field appearance="fill" style="margin-right: 10px;">
+                    <mat-label>Videojuego</mat-label>
+                    <mat-select formControlName="game">
+                        <mat-option *ngFor="let type of game" [value]="type.id">{{ type.name }} - ({{ type.platform.name }}) - ({{ type.language.name }})</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <button mat-raised-button color="primary" class="btn-action" (click)="save()">
+                Guardar
+            </button>
+
+        </form>
+    </mat-card-content>
+</mat-card>

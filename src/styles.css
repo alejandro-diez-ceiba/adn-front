@@ -33,3 +33,7 @@ body {
     width: 25px !important;
     height: 25px !important;
 }
+
+.example-margin {
+    margin: 0 10px;
+}

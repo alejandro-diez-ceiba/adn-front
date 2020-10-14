@@ -3,6 +3,7 @@ export * from './components/user/user.component';
 export * from './components/customer/customer.component';
 export * from './components/provider/provider.component';
 export * from './components/game/game.component';
+export * from './components/kardex/kardex.component';
 export * from './components/dialog/dialog.component';
 
 export * from './constants/module.constants';
@@ -16,4 +17,5 @@ export * from './models/provider.model';
 export * from './models/platform.model';
 export * from './models/language.model';
 export * from './models/game.model';
+export * from './models/kardex.model';
 export * from './models/dialog.model';

@@ -7,6 +7,7 @@ import { UserComponent } from './components/user/user.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { ProviderComponent } from './components/provider/provider.component';
 import { GameComponent } from './components/game/game.component';
+import { KardexComponent } from './components/kardex/kardex.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 
 import { MatCardModule } from '@angular/material/card';
@@ -22,6 +23,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     CustomerComponent,
     ProviderComponent,
     GameComponent,
+    KardexComponent,
     DialogComponent
   ],
   imports: [
@@ -47,7 +50,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatRadioModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -63,7 +67,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatRadioModule
   ]
 })
 export class SharedModule { }
