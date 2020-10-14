@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CrudComponent } from './components/crud/crud.component';
 import { UserComponent } from './components/user/user.component';
 import { CustomerComponent } from './components/customer/customer.component';
+import { ProviderComponent } from './components/provider/provider.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 
 import { MatCardModule } from '@angular/material/card';
@@ -24,6 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     CrudComponent,
     UserComponent,
     CustomerComponent,
+    ProviderComponent,
     DialogComponent
   ],
   imports: [
