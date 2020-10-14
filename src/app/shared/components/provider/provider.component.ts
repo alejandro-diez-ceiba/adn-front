@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CrudService, TypeDocumentService } from '@app/core';
 import { forkJoin, Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Provider } from './../../models/provider.model';
 import { Module } from './../../models/module.model';
 import { TypeDocument } from './../../models/type-document.model';
+import { onlyNumber } from './../../constants/pattern.constants';
 
 @Component({
   selector: 'app-provider',
@@ -52,16 +53,21 @@ export class ProviderComponent implements OnInit {
 
   private createForm(provider?: Provider): void {
     this.form = new FormGroup({
-      fullName: new FormControl(provider?.fullName, []),
-      typeDocument: new FormControl(provider?.typeDocument?.id, []),
-      document: new FormControl(provider?.document, []),
-      address: new FormControl(provider?.address, []),
-      phone: new FormControl(provider?.phone, [])
+      fullName: new FormControl(provider?.fullName, [Validators.required, Validators.minLength(5)]),
+      typeDocument: new FormControl(provider?.typeDocument?.id, [Validators.required]),
+      document: new FormControl(provider?.document, [Validators.required, Validators.minLength(7), Validators.pattern(onlyNumber)]),
+      address: new FormControl(provider?.address, [Validators.required, Validators.minLength(5)]),
+      phone: new FormControl(provider?.phone, [Validators.required, Validators.minLength(8)])
     });
   }
 
   save(): void {
-    this.createOrUpdate.emit(this.form.getRawValue());
+    (this.form.valid)
+      ? this.createOrUpdate.emit({
+        ...this.form.getRawValue(),
+        id: this.id
+      })
+      : this.form.markAllAsTouched();
   }
 
 }

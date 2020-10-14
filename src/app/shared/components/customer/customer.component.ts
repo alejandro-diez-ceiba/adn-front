@@ -62,7 +62,6 @@ export class CustomerComponent implements OnInit {
   }
 
   save(): void {
-    console.log(this.form);
     (this.form.valid)
       ? this.createOrUpdate.emit({
         ...this.form.getRawValue(),

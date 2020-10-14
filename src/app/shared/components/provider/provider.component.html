@@ -7,7 +7,13 @@
             <div class="full-width">
                 <mat-form-field class="media-width">
                     <mat-label>Nombre Completo</mat-label>
-                    <input matInput formControlName="fullName">
+                    <input autocomplete="off" matInput formControlName="fullName" maxlength="80">
+                    <mat-error *ngIf="form.get('fullName').hasError('required')">
+                        El campo es obligatorio
+                    </mat-error>
+                    <mat-error *ngIf="form.get('fullName').hasError('minlength')">
+                        Debe de tener como mínimo 5 caracteres
+                    </mat-error>
                 </mat-form-field>
             </div>
 
@@ -16,24 +22,48 @@
                 <mat-select formControlName="typeDocument">
                     <mat-option *ngFor="let type of typeDocument" [value]="type.id">{{ type.description }}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="form.get('typeDocument').hasError('required')">
+                    El campo es obligatorio
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field class="ajust">
                 <mat-label>Nro. Documento</mat-label>
-                <input matInput formControlName="document">
+                <input autocomplete="off" matInput formControlName="document" maxlength="11">
+                <mat-error *ngIf="form.get('document').hasError('required')">
+                    El campo es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('document').hasError('minlength')">
+                    Debe de tener como mínimo 7 caracteres
+                </mat-error>
+                <mat-error *ngIf="form.get('document').hasError('pattern')">
+                    El campo solo recibe valores numéricos
+                </mat-error>
             </mat-form-field>
 
             <div class="full-width">
                 <mat-form-field class="media-width" style="margin-right: 10px;">
                     <mat-label>Dirección</mat-label>
-                    <input matInput formControlName="address">
+                    <input autocomplete="off" matInput formControlName="address" maxlength="35">
+                    <mat-error *ngIf="form.get('address').hasError('required')">
+                        El campo es obligatorio
+                    </mat-error>
+                    <mat-error *ngIf="form.get('address').hasError('minlength')">
+                        Debe de tener como mínimo 5 caracteres
+                    </mat-error>
                 </mat-form-field>
             </div>
 
             <div class="full-width">
                 <mat-form-field class="media-width">
                     <mat-label>Celular</mat-label>
-                    <input matInput formControlName="phone">
+                    <input autocomplete="off" matInput formControlName="phone" maxlength="15">
+                    <mat-error *ngIf="form.get('phone').hasError('required')">
+                        El campo es obligatorio
+                    </mat-error>
+                    <mat-error *ngIf="form.get('phone').hasError('minlength')">
+                        Debe de tener como mínimo 8 caracteres
+                    </mat-error>
                 </mat-form-field>
             </div>
 
