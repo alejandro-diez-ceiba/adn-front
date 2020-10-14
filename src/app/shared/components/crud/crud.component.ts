@@ -80,6 +80,7 @@ export class CrudComponent implements OnInit {
 
   onCreateOrUpdate<T>(element: T): void {
     this.setIsNew(false);
+    console.log(element);
   }
 
 }

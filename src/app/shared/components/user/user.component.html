@@ -7,7 +7,13 @@
             <div class="full-width">
                 <mat-form-field class="media-width">
                     <mat-label>Nombre Completo</mat-label>
-                    <input matInput formControlName="fullName">
+                    <input matInput autocomplete="off" formControlName="fullName" maxlength="80">
+                    <mat-error *ngIf="form.get('fullName').hasError('required')">
+                        El campo es obligatorio
+                    </mat-error>
+                    <mat-error *ngIf="form.get('fullName').hasError('minlength')">
+                        Debe de tener como minimo 5 caracteres
+                    </mat-error>
                 </mat-form-field>
             </div>
 
@@ -16,17 +22,32 @@
                 <mat-select formControlName="typeDocument">
                     <mat-option *ngFor="let type of typeDocument" [value]="type.id">{{ type.description }}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="form.get('typeDocument').hasError('required')">
+                    El campo es obligatorio
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field class="ajust">
                 <mat-label>Nro. Documento</mat-label>
-                <input matInput formControlName="document">
+                <input matInput autocomplete="off" formControlName="document" maxlength="11">
+                <mat-error *ngIf="form.get('document').hasError('required')">
+                    El campo es obligatorio
+                </mat-error>
+                <mat-error *ngIf="form.get('document').hasError('minlength')">
+                    Debe de tener como minimo 7 caracteres
+                </mat-error>
             </mat-form-field>
 
             <div class="full-width">
                 <mat-form-field class="media-width">
                     <mat-label>Contraseña</mat-label>
-                    <input matInput formControlName="password">
+                    <input matInput autocomplete="off" formControlName="password" maxlength="25">
+                    <mat-error *ngIf="form.get('password').hasError('required')">
+                        El campo es obligatorio
+                    </mat-error>
+                    <mat-error *ngIf="form.get('password').hasError('minlength')">
+                        Debe de tener como minimo 6 caracteres
+                    </mat-error>
                 </mat-form-field>
             </div>
 

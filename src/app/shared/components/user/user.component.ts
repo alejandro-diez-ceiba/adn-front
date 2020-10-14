@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CrudService, TypeDocumentService } from '@app/core';
 import { forkJoin, Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -51,16 +51,24 @@ export class UserComponent implements OnInit {
   }
 
   private createForm(user?: User): void {
+    const isRequeridPass = (!this.id)
+      ? [Validators.required] : [];
+
     this.form = new FormGroup({
-      fullName: new FormControl(user?.fullName, []),
-      typeDocument: new FormControl(user?.typeDocument?.id, []),
-      document: new FormControl(user?.document, []),
-      password: new FormControl(null, [])
+      fullName: new FormControl(user?.fullName, [Validators.required, Validators.minLength(5)]),
+      typeDocument: new FormControl(user?.typeDocument?.id, [Validators.required]),
+      document: new FormControl(user?.document, [Validators.required, Validators.minLength(7)]),
+      password: new FormControl(null, [...isRequeridPass, Validators.minLength(6)])
     });
   }
 
   save(): void {
-    this.createOrUpdate.emit(this.form.getRawValue());
+    (this.form.valid)
+      ? this.createOrUpdate.emit({
+        ...this.form.getRawValue(),
+        id: this.id
+      })
+      : this.form.markAllAsTouched();
   }
 
 }
