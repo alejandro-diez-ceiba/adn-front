@@ -7,7 +7,13 @@
             <div class="full-width">
                 <mat-form-field class="media-width">
                     <mat-label>Nombre</mat-label>
-                    <input matInput formControlName="name">
+                    <input autocomplete="off" matInput formControlName="name" maxlength="80">
+                    <mat-error *ngIf="form.get('name').hasError('required')">
+                        El campo es obligatorio
+                    </mat-error>
+                    <mat-error *ngIf="form.get('name').hasError('minlength')">
+                        Debe de tener como mínimo 2 caracteres
+                    </mat-error>
                 </mat-form-field>
             </div>
 
@@ -16,12 +22,21 @@
                 <input matInput [matDatepicker]="picker1" formControlName="launch">
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
+                <mat-error *ngIf="form.get('launch').hasError('required')">
+                    El campo es obligatorio
+                </mat-error>
             </mat-form-field>
 
             <div class="full-width">
                 <mat-form-field class="media-width">
                     <mat-label>Precio</mat-label>
-                    <input matInput formControlName="price">
+                    <input autocomplete="off" matInput formControlName="price" maxlength="12">
+                    <mat-error *ngIf="form.get('price').hasError('required')">
+                        El campo es obligatorio
+                    </mat-error>
+                    <mat-error *ngIf="form.get('price').hasError('pattern')">
+                        El campo solo recibe valores numéricos con 2 decimales
+                    </mat-error>
                 </mat-form-field>
             </div>
 
@@ -31,6 +46,9 @@
                     <mat-select formControlName="platform">
                         <mat-option *ngFor="let type of platform" [value]="type.id">{{ type.name }}</mat-option>
                     </mat-select>
+                    <mat-error *ngIf="form.get('platform').hasError('required')">
+                        El campo es obligatorio
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
@@ -38,6 +56,9 @@
                     <mat-select formControlName="language">
                         <mat-option *ngFor="let type of language" [value]="type.id">{{ type.name }}</mat-option>
                     </mat-select>
+                    <mat-error *ngIf="form.get('language').hasError('required')">
+                        El campo es obligatorio
+                    </mat-error>
                 </mat-form-field>
             </div>
 

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CrudService, PlatformService, LanguageService } from '@app/core';
 import { forkJoin, Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -7,6 +7,7 @@ import { Game } from './../../models/game.model';
 import { Module } from './../../models/module.model';
 import { Platform } from './../../models/platform.model';
 import { Language } from './../../models/language.model';
+import { decimalNumber } from '@app/shared/constants/pattern.constants';
 
 @Component({
   selector: 'app-game',
@@ -56,17 +57,25 @@ export class GameComponent implements OnInit {
   }
 
   private createForm(game?: Game): void {
+    const dateLaunch = (game?.launch)
+      ? new Date(game.launch) : null;
+
     this.form = new FormGroup({
-      name: new FormControl(game?.name, []),
-      launch: new FormControl(null, []),
-      price: new FormControl(game?.price, []),
-      platform: new FormControl(game?.platform?.id, []),
-      language: new FormControl(game?.language?.id, [])
+      name: new FormControl(game?.name, [Validators.required, Validators.minLength(2)]),
+      launch: new FormControl(dateLaunch, [Validators.required]),
+      price: new FormControl(game?.price, [Validators.required, Validators.pattern(decimalNumber)]),
+      platform: new FormControl(game?.platform?.id, [Validators.required]),
+      language: new FormControl(game?.language?.id, [Validators.required])
     });
   }
 
   save(): void {
-    this.createOrUpdate.emit(this.form.getRawValue());
+    (this.form.valid)
+      ? this.createOrUpdate.emit({
+        ...this.form.getRawValue(),
+        id: this.id
+      })
+      : this.form.markAllAsTouched();
   }
 
 }
