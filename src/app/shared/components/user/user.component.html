@@ -12,7 +12,7 @@
                         El campo es obligatorio
                     </mat-error>
                     <mat-error *ngIf="form.get('fullName').hasError('minlength')">
-                        Debe de tener como minimo 5 caracteres
+                        Debe de tener como mínimo 5 caracteres
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -34,7 +34,10 @@
                     El campo es obligatorio
                 </mat-error>
                 <mat-error *ngIf="form.get('document').hasError('minlength')">
-                    Debe de tener como minimo 7 caracteres
+                    Debe de tener como mínimo 7 caracteres
+                </mat-error>
+                <mat-error *ngIf="form.get('document').hasError('pattern')">
+                    El campo solo recibe valores numéricos
                 </mat-error>
             </mat-form-field>
 
@@ -46,7 +49,7 @@
                         El campo es obligatorio
                     </mat-error>
                     <mat-error *ngIf="form.get('password').hasError('minlength')">
-                        Debe de tener como minimo 6 caracteres
+                        Debe de tener como mínimo 6 caracteres
                     </mat-error>
                 </mat-form-field>
             </div>

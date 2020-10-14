@@ -6,6 +6,7 @@ import { tap } from 'rxjs/operators';
 import { User } from './../../models/user.model';
 import { Module } from './../../models/module.model';
 import { TypeDocument } from './../../models/type-document.model';
+import { onlyNumber } from './../../constants/pattern.constants';
 
 @Component({
   selector: 'app-user',
@@ -57,7 +58,7 @@ export class UserComponent implements OnInit {
     this.form = new FormGroup({
       fullName: new FormControl(user?.fullName, [Validators.required, Validators.minLength(5)]),
       typeDocument: new FormControl(user?.typeDocument?.id, [Validators.required]),
-      document: new FormControl(user?.document, [Validators.required, Validators.minLength(7)]),
+      document: new FormControl(user?.document, [Validators.required, Validators.minLength(7), Validators.pattern(onlyNumber)]),
       password: new FormControl(null, [...isRequeridPass, Validators.minLength(6)])
     });
   }

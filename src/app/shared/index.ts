@@ -8,6 +8,7 @@ export * from './components/dialog/dialog.component';
 
 export * from './constants/module.constants';
 export * from './constants/dialog.constants';
+export * from './constants/pattern.constants';
 
 export * from './models/module.model';
 export * from './models/type-document.model';
