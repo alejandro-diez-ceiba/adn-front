@@ -6,6 +6,7 @@ import { CrudComponent } from './components/crud/crud.component';
 import { UserComponent } from './components/user/user.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { ProviderComponent } from './components/provider/provider.component';
+import { GameComponent } from './components/game/game.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 
 import { MatCardModule } from '@angular/material/card';
@@ -19,6 +20,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     UserComponent,
     CustomerComponent,
     ProviderComponent,
+    GameComponent,
     DialogComponent
   ],
   imports: [
@@ -41,7 +45,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -55,7 +61,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class SharedModule { }

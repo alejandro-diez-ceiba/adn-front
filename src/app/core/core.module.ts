@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BaseService } from './base.service';
 import { CrudService } from './crud.service';
 import { TypeDocumentService } from './type-document.service';
+import { PlatformService } from './platform.service';
+import { LanguageService } from './language.service';
 
 @NgModule({
   declarations: [],
@@ -14,7 +16,9 @@ import { TypeDocumentService } from './type-document.service';
   providers: [
     BaseService,
     CrudService,
-    TypeDocumentService
+    TypeDocumentService,
+    PlatformService,
+    LanguageService
   ]
 })
 export class CoreModule { }

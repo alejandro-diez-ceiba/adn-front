@@ -44,4 +44,6 @@
     </app-customer>
     <app-provider *ngSwitchCase="'provider'" [id]="id" [module]="module" (createOrUpdate)="onCreateOrUpdate($event)">
     </app-provider>
+    <app-game *ngSwitchCase="'game'" [id]="id" [module]="module" (createOrUpdate)="onCreateOrUpdate($event)">
+    </app-game>
 </div>
