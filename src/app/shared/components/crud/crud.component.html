@@ -40,4 +40,6 @@
 <div class="line" *ngIf="isNew" [ngSwitch]="module.type">
     <app-user *ngSwitchCase="'user'" [id]="id" [module]="module" (createOrUpdate)="onCreateOrUpdate($event)">
     </app-user>
+    <app-customer *ngSwitchCase="'customer'" [id]="id" [module]="module" (createOrUpdate)="onCreateOrUpdate($event)">
+    </app-customer>
 </div>
