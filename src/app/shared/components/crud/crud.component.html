@@ -1,9 +1,13 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="pacman" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
 <div class="row">
     <div class="colu">
         <h1>{{ module.title }}</h1>
     </div>
     <div class="colu">
-        <div class="button-add-container">
+        <div class="button-add-container" *ngIf="!loading && !showError">
             <button mat-raised-button *ngIf="!isNew" color="primary" (click)="newElement()" class="btn-action">
                 Nuevo
             </button>
@@ -12,6 +16,18 @@
             </button>
         </div>
     </div>
+</div>
+
+<div class="line" *ngIf="showError">
+    <mat-card>
+        <h3>Error cargando los datos intentelo de nuevo</h3>
+    </mat-card>
+</div>
+
+<div class="line" *ngIf="showNoData">
+    <mat-card>
+        <h3>No hay datos</h3>
+    </mat-card>
 </div>
 
 <table mat-table *ngIf="showTable" [dataSource]="data" class="mat-elevation-z8">

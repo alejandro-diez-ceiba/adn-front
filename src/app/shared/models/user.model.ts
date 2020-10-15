@@ -5,4 +5,5 @@ export interface User {
     fullName: string;
     typeDocument: TypeDocument;
     document: string;
+    password: string;
 }
