@@ -25,9 +25,9 @@ export class KardexComponent implements OnInit, OnDestroy {
   private unsubscribe: Subscription;
 
   form: FormGroup;
-  provider: Provider[];
-  customer: Customer[];
-  game: Game[];
+  provider: Provider[] = [];
+  customer: Customer[] = [];
+  game: Game[] = [];
   isEntry: boolean;
   ready = false;
 
