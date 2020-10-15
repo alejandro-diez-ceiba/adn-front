@@ -16,3 +16,8 @@ table {
     float: right;
     top: 10px;
 }
+
+.line {
+    width: 100%;
+    display: inline-block;
+}

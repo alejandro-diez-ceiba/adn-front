@@ -24,11 +24,19 @@ node {
     }
 
     stage('Test') {
-        sh 'ng test --browsers ChromeHeadless --progress=false --watch false'
+        sh 'ng test --browsers ChromeHeadless --progress=false --watch false --code-coverage'
     }
 
     stage('Lint') {
         sh 'ng lint'
+    }
+
+    stage('Static Code Analysis') {
+      steps{
+        withSonarQubeEnv('Sonar') {
+			sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+        }
+      }
     }
 
     stage('Build') {

@@ -18,3 +18,22 @@ body {
 .full-width {
     width: 100%;
 }
+
+.media-width {
+    width: 50%;
+}
+
+.ajust {
+    margin-left: 10px;
+    top: 4px;
+}
+
+.small,
+.small>svg {
+    width: 25px !important;
+    height: 25px !important;
+}
+
+.example-margin {
+    margin: 0 10px;
+}
