@@ -34,7 +34,7 @@ node {
     stage('Static Code Analysis') {
       steps{
         withSonarQubeEnv('Sonar') {
-			sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=co.com.cliente:Ceiba-AdnADIGamerFront(alejandro.diez) -Dsonar.projectName=Ceiba-AdnADIGamerFront(alejandro.diez) -Dproject.settings=./sonar-project.properties"
+			sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
         }
       }
     }
