@@ -29,17 +29,23 @@ pipeline {
         }
 
         stage('NPM Install') {
-            withEnv(['NPM_CONFIG_LOGLEVEL=warn']) {
-                sh 'npm install'
+            steps {
+                withEnv(['NPM_CONFIG_LOGLEVEL=warn']) {
+                    sh 'npm install'
+                }
             }
         }
 
         stage('Test') {
-            sh 'ng test --browsers ChromeHeadless --progress=false --watch false --code-coverage'
+            steps {
+                sh 'ng test --browsers ChromeHeadless --progress=false --watch false --code-coverage'
+            }
         }
 
         stage('Lint') {
-            sh 'ng lint'
+            steps {
+                sh 'ng lint'
+            }
         }
 
         stage('Static Code Analysis') {
@@ -53,8 +59,9 @@ pipeline {
         }
 
         stage('Build') {
-            milestone()
-            sh 'ng build --prod --progress=false'
+            steps {
+                sh 'ng build --prod --progress=false'
+            }
         }
     }
 
