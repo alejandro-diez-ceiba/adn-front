@@ -22,8 +22,8 @@ export class GameComponent implements OnInit {
   @Output() errorLoad = new EventEmitter<void>();
 
   form: FormGroup;
-  platform: Platform[];
-  language: Language[];
+  platform: Platform[] = [];
+  language: Language[] = [];
   ready = false;
 
   constructor(

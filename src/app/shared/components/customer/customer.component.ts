@@ -21,7 +21,7 @@ export class CustomerComponent implements OnInit {
   @Output() errorLoad = new EventEmitter<void>();
 
   form: FormGroup;
-  typeDocument: TypeDocument[];
+  typeDocument: TypeDocument[] = [];
   ready = false;
 
   constructor(
