@@ -44,7 +44,7 @@
             <div class="full-width">
                 <mat-form-field class="media-width" style="margin-right: 10px;">
                     <mat-label>Dirección</mat-label>
-                    <input autocomplete="off" matInput formControlName="address" maxlength="35">
+                    <input autocomplete="off" matInput formControlName="address" maxlength="50">
                     <mat-error *ngIf="form.get('address').hasError('required')">
                         El campo es obligatorio
                     </mat-error>

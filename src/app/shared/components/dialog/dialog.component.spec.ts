@@ -26,10 +26,10 @@ describe('DialogComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DialogComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('When the component is initialized and there are no errors it should render successfully', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 });

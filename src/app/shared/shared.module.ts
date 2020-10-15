@@ -24,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatRadioModule
+    MatRadioModule,
+    NgxSpinnerModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -68,7 +70,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatRadioModule
+    MatRadioModule,
+    NgxSpinnerModule
   ]
 })
 export class SharedModule { }

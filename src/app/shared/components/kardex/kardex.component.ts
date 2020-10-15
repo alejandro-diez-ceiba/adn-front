@@ -20,6 +20,7 @@ export class KardexComponent implements OnInit, OnDestroy {
   @Input() id: number;
   @Input() module: Module;
   @Output() createOrUpdate = new EventEmitter<Kardex>();
+  @Output() errorLoad = new EventEmitter<void>();
 
   private unsubscribe: Subscription;
 
@@ -52,7 +53,7 @@ export class KardexComponent implements OnInit, OnDestroy {
         this.createForm(kardex);
         this.ready = true;
       })
-    ).subscribe();
+    ).subscribe(() => { }, () => this.errorLoad.emit());
   }
 
   private loadById(): Observable<Kardex> {
@@ -117,7 +118,7 @@ export class KardexComponent implements OnInit, OnDestroy {
     (this.form.valid)
       ? this.createOrUpdate.emit({
         ...this.form.getRawValue(),
-        id: this.id
+        id: (this.id === undefined) ? null : this.id
       })
       : this.form.markAllAsTouched();
   }

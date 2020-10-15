@@ -42,10 +42,10 @@ describe('KardexComponent', () => {
     fixture = TestBed.createComponent(KardexComponent);
     component = fixture.componentInstance;
     component.module = modulesApp[0];
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('When the component is initialized and there are no errors it should render successfully', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 });

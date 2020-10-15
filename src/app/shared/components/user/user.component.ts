@@ -18,9 +18,11 @@ export class UserComponent implements OnInit {
   @Input() id: number;
   @Input() module: Module;
   @Output() createOrUpdate = new EventEmitter<User>();
+  @Output() errorLoad = new EventEmitter<void>();
 
   form: FormGroup;
   typeDocument: TypeDocument[];
+  element: User;
   ready = false;
 
   constructor(
@@ -42,7 +44,7 @@ export class UserComponent implements OnInit {
         this.createForm(user);
         this.ready = true;
       })
-    ).subscribe();
+    ).subscribe(() => { }, () => this.errorLoad.emit());
   }
 
   private loadById(): Observable<User> {
@@ -52,6 +54,7 @@ export class UserComponent implements OnInit {
   }
 
   private createForm(user?: User): void {
+    this.element = user;
     const isRequeridPass = (!this.id)
       ? [Validators.required] : [];
 
@@ -64,10 +67,16 @@ export class UserComponent implements OnInit {
   }
 
   save(): void {
+    const passValue = this.form.get('password').value;
+    const pass = (this.id && !passValue)
+      ? this.element.password : passValue;
+
     (this.form.valid)
       ? this.createOrUpdate.emit({
         ...this.form.getRawValue(),
-        id: this.id
+        id: (this.id === undefined) ? null : this.id,
+        password: pass,
+        document: parseInt(this.form.get('document').value, 10)
       })
       : this.form.markAllAsTouched();
   }

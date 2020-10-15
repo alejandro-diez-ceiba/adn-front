@@ -4,7 +4,10 @@
         {{ data.description }}
     </p>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
+<mat-dialog-actions *ngIf="data.buttons" align="end">
     <button mat-button [mat-dialog-close]="false">Cancelar</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Aceptar</button>
+</mat-dialog-actions>
+<mat-dialog-actions *ngIf="!data.buttons" align="end">
     <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Aceptar</button>
 </mat-dialog-actions>
