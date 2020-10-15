@@ -1,24 +1,34 @@
+options {
+    buildDiscarder(logRotator(numToKeepStr: '3'))
+    disableConcurrentBuilds()
+}
+
+tools {
+    jdk 'JDK8_Centos'
+    gradle 'Gradle4.5_Centos'
+}
+
 node {
     stage('Checkout') {
-      steps{
-        echo "------------>Checkout<------------"
-        checkout([
-			$class: 'GitSCM',
-			branches: [[name: '*/master']],
-			doGenerateSubmoduleConfigurations: false,
-			extensions: [],
-			gitTool: 'Default',
-			submoduleCfg: [],
-			userRemoteConfigs: [[
-				credentialsId: 'GitHub_rquirpa-csh',
-				url:'https://github.com/alejandro-diez-ceiba/adn-front.git'
-			]]
-		])
-      }
+        steps {
+            echo '------------>Checkout<------------'
+            checkout([
+            $class: 'GitSCM',
+            branches: [[name: '*/master']],
+            doGenerateSubmoduleConfigurations: false,
+            extensions: [],
+            gitTool: 'Default',
+            submoduleCfg: [],
+            userRemoteConfigs: [[
+                credentialsId: 'GitHub_rquirpa-csh',
+                url:'https://github.com/alejandro-diez-ceiba/adn-front.git'
+            ]]
+        ])
+        }
     }
 
     stage('NPM Install') {
-        withEnv(["NPM_CONFIG_LOGLEVEL=warn"]) {
+        withEnv(['NPM_CONFIG_LOGLEVEL=warn']) {
             sh 'npm install'
         }
     }
@@ -32,27 +42,27 @@ node {
     }
 
     stage('Static Code Analysis') {
-      steps{
-          container('SonarQubeScanner') {
-            withSonarQubeEnv('SonarQube') {
-                sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+        steps {
+            container('SonarQubeScanner') {
+                withSonarQubeEnv('SonarQube') {
+                    sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+                }
             }
         }
-      }
     }
 
     stage('Build') {
         milestone()
         sh 'ng build --prod --progress=false'
     }
+}
 
-    post {
-        success {
+post {
+    success {
         echo 'This will run only if successful'
-        }
-        failure {
+    }
+    failure {
         echo 'This will run only if failed'
-        mail (to: 'alejandro.diez@ceiba.com.co',subject: "Failed Pipeline:${currentBuild.fullDisplayName}",body: "Something is wrong with ${env.BUILD_URL}")
-        }
-  }
+        mail(to: 'alejandro.diez@ceiba.com.co', subject: "Failed Pipeline:${currentBuild.fullDisplayName}", body: "Something is wrong with ${env.BUILD_URL}")
+    }
 }
