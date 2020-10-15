@@ -1,15 +1,17 @@
-pipeline {
+properties(
+    [
+        [$class: 'BuildDiscarderProperty', strategy:
+          [$class: 'LogRotator', artifactDaysToKeepStr: '14', artifactNumToKeepStr: '5', daysToKeepStr: '30', numToKeepStr: '60']],
+        pipelineTriggers(
+          [
+              pollSCM('H/15 * * * *'),
+              cron('@daily'),
+          ]
+        )
+    ]
+)
 
-  agent {
-    label 'Slave_Induccion'
-  }
-
-  options {
-    buildDiscarder(logRotator(numToKeepStr: '3'))
- 	disableConcurrentBuilds()
-  }
-
-  stages{
+node {
     stage('Checkout') {
       steps{
         echo "------------>Checkout<------------"
@@ -56,15 +58,14 @@ pipeline {
         milestone()
         sh 'ng build --prod --progress=false'
     }
-  }
 
-  post {
-    success {
-      echo 'This will run only if successful'
-    }
-    failure {
-      echo 'This will run only if failed'
-      mail (to: 'alejandro.diez@ceiba.com.co',subject: "Failed Pipeline:${currentBuild.fullDisplayName}",body: "Something is wrong with ${env.BUILD_URL}")
-    }
+    post {
+        success {
+        echo 'This will run only if successful'
+        }
+        failure {
+        echo 'This will run only if failed'
+        mail (to: 'alejandro.diez@ceiba.com.co',subject: "Failed Pipeline:${currentBuild.fullDisplayName}",body: "Something is wrong with ${env.BUILD_URL}")
+        }
   }
 }
