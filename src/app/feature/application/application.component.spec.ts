@@ -4,7 +4,7 @@ import { ApplicationComponent } from './application.component';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('HomeComponent', () => {
+describe('ApplicationComponent', () => {
   let component: ApplicationComponent;
   let fixture: ComponentFixture<ApplicationComponent>;
 
@@ -20,10 +20,10 @@ describe('HomeComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ApplicationComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('When the component is initialized and there are no errors it should render successfully', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 });
