@@ -9,7 +9,7 @@ pipeline {
         gradle 'Gradle4.5_Centos'
     }
 
-    node {
+    stages {
         stage('Checkout') {
             steps {
                 echo '------------>Checkout<------------'
