@@ -20,3 +20,8 @@ export * from './models/language.model';
 export * from './models/game.model';
 export * from './models/kardex.model';
 export * from './models/dialog.model';
+
+export * from './mocks/crud.mock';
+export * from './mocks/type-document.mock';
+export * from './mocks/platform.mock';
+export * from './mocks/language.mock';

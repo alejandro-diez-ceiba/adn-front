@@ -7,7 +7,7 @@ import { Game } from './../../models/game.model';
 import { Module } from './../../models/module.model';
 import { Platform } from './../../models/platform.model';
 import { Language } from './../../models/language.model';
-import { decimalNumber } from '@app/shared/constants/pattern.constants';
+import { decimalNumber } from './../../constants/pattern.constants';
 
 @Component({
   selector: 'app-game',
