@@ -25,3 +25,4 @@ export * from './mocks/crud.mock';
 export * from './mocks/type-document.mock';
 export * from './mocks/platform.mock';
 export * from './mocks/language.mock';
+export * from './mocks/mat-dialog.mock';
