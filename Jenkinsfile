@@ -1,20 +1,31 @@
-properties(
-    [
-        [$class: 'BuildDiscarderProperty', strategy:
-          [$class: 'LogRotator', artifactDaysToKeepStr: '14', artifactNumToKeepStr: '5', daysToKeepStr: '30', numToKeepStr: '60']],
-        pipelineTriggers(
-          [
-              pollSCM('H/15 * * * *'),
-              cron('@daily'),
-          ]
-        )
-    ]
-)
+pipeline {
 
-node {
+  agent {
+    label 'Slave_Induccion'
+  }
+
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '3'))
+ 	disableConcurrentBuilds()
+  }
+
+  stages{
     stage('Checkout') {
-        deleteDir()
-        checkout scm
+      steps{
+        echo "------------>Checkout<------------"
+        checkout([
+			$class: 'GitSCM',
+			branches: [[name: '*/master']],
+			doGenerateSubmoduleConfigurations: false,
+			extensions: [],
+			gitTool: 'Default',
+			submoduleCfg: [],
+			userRemoteConfigs: [[
+				credentialsId: 'GitHub_rquirpa-csh',
+				url:'https://github.com/alejandro-diez-ceiba/adn-front.git'
+			]]
+		])
+      }
     }
 
     stage('NPM Install') {
@@ -33,8 +44,10 @@ node {
 
     stage('Static Code Analysis') {
       steps{
-        withSonarQubeEnv('Sonar') {
-			sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+          container('SonarQubeScanner') {
+            withSonarQubeEnv('SonarQube') {
+                sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+            }
         }
       }
     }
@@ -43,4 +56,12 @@ node {
         milestone()
         sh 'ng build --prod --progress=false'
     }
+  }
+
+  post {
+    failure {
+      echo 'This will run only if failed'
+      mail (to: 'alejandro.diez@ceiba.com.co',subject: "Failed Pipeline:${currentBuild.fullDisplayName}",body: "Something is wrong with ${env.BUILD_URL}")
+    }
+  }
 }
