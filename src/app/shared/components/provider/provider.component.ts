@@ -18,6 +18,7 @@ export class ProviderComponent implements OnInit {
   @Input() id: number;
   @Input() module: Module;
   @Output() createOrUpdate = new EventEmitter<Provider>();
+  @Output() errorLoad = new EventEmitter<void>();
 
   form: FormGroup;
   typeDocument: TypeDocument[];
@@ -42,7 +43,7 @@ export class ProviderComponent implements OnInit {
         this.createForm(provider);
         this.ready = true;
       })
-    ).subscribe();
+    ).subscribe(() => { }, () => this.errorLoad.emit());
   }
 
   private loadById(): Observable<Provider> {
@@ -65,7 +66,7 @@ export class ProviderComponent implements OnInit {
     (this.form.valid)
       ? this.createOrUpdate.emit({
         ...this.form.getRawValue(),
-        id: this.id
+        id: (this.id === undefined) ? null : this.id
       })
       : this.form.markAllAsTouched();
   }

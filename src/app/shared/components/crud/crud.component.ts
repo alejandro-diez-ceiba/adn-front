@@ -57,12 +57,12 @@ export class CrudComponent implements OnInit, OnDestroy {
         ? (this.data = data.map((element) => this.module.mapData(element)))
         : (this.data = data)
       ),
-      tap(() => this.errorLoadElements = false),
+      tap(() => this.setErrorLoadElements(false)),
       finalize(() => {
         this.spinner.hide();
         this.loading = false;
       })
-    ).subscribe(() => { }, () => this.errorLoadElements = true);
+    ).subscribe(() => { }, () => this.setErrorLoadElements(true));
   }
 
   private resetId(): void {
@@ -71,6 +71,10 @@ export class CrudComponent implements OnInit, OnDestroy {
 
   private setIsNew(isNew: boolean): void {
     this.isNew = isNew;
+  }
+
+  private setErrorLoadElements(status: boolean): void {
+    this.errorLoadElements = status;
   }
 
   newElement(): void {
@@ -121,6 +125,12 @@ export class CrudComponent implements OnInit, OnDestroy {
     this.setIsNew(false);
     this.crud.createOrUpdate(this.module.type, element)
       .subscribe((status: boolean) => this.endProcces(status));
+  }
+
+  onErrorLoad(): void {
+    this.resetId();
+    this.setIsNew(false);
+    this.setErrorLoadElements(true);
   }
 
   ngOnDestroy(): void {

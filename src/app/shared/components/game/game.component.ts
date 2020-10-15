@@ -19,6 +19,7 @@ export class GameComponent implements OnInit {
   @Input() id: number;
   @Input() module: Module;
   @Output() createOrUpdate = new EventEmitter<Game>();
+  @Output() errorLoad = new EventEmitter<void>();
 
   form: FormGroup;
   platform: Platform[];
@@ -47,7 +48,7 @@ export class GameComponent implements OnInit {
         this.createForm(game);
         this.ready = true;
       })
-    ).subscribe();
+    ).subscribe(() => { }, () => this.errorLoad.emit());
   }
 
   private loadById(): Observable<Game> {
@@ -73,7 +74,7 @@ export class GameComponent implements OnInit {
     (this.form.valid)
       ? this.createOrUpdate.emit({
         ...this.form.getRawValue(),
-        id: this.id
+        id: (this.id === undefined) ? null : this.id
       })
       : this.form.markAllAsTouched();
   }

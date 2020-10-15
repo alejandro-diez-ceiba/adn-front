@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
   @Input() id: number;
   @Input() module: Module;
   @Output() createOrUpdate = new EventEmitter<User>();
+  @Output() errorLoad = new EventEmitter<void>();
 
   form: FormGroup;
   typeDocument: TypeDocument[];
@@ -43,7 +44,7 @@ export class UserComponent implements OnInit {
         this.createForm(user);
         this.ready = true;
       })
-    ).subscribe();
+    ).subscribe(() => { }, () => this.errorLoad.emit());
   }
 
   private loadById(): Observable<User> {

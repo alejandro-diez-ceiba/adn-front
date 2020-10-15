@@ -18,6 +18,7 @@ export class CustomerComponent implements OnInit {
   @Input() id: number;
   @Input() module: Module;
   @Output() createOrUpdate = new EventEmitter<Customer>();
+  @Output() errorLoad = new EventEmitter<void>();
 
   form: FormGroup;
   typeDocument: TypeDocument[];
@@ -42,7 +43,7 @@ export class CustomerComponent implements OnInit {
         this.createForm(customer);
         this.ready = true;
       })
-    ).subscribe();
+    ).subscribe(() => { }, () => this.errorLoad.emit());
   }
 
   private loadById(): Observable<Customer> {
@@ -65,7 +66,7 @@ export class CustomerComponent implements OnInit {
     (this.form.valid)
       ? this.createOrUpdate.emit({
         ...this.form.getRawValue(),
-        id: this.id
+        id: (this.id === undefined) ? null : this.id
       })
       : this.form.markAllAsTouched();
   }
