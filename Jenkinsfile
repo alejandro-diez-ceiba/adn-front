@@ -1,4 +1,9 @@
 pipeline {
+
+    agent {
+        label 'Slave_Induccion'
+    }
+
     options {
         buildDiscarder(logRotator(numToKeepStr: '3'))
         disableConcurrentBuilds()
