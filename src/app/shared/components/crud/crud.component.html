@@ -56,12 +56,12 @@
 <div class="line" *ngIf="isNew" [ngSwitch]="module.type">
     <app-user *ngSwitchCase="'user'" [id]="id" [module]="module" (createOrUpdate)="onCreateOrUpdate($event)" (errorLoad)="onErrorLoad()">
     </app-user>
-    <app-customer *ngSwitchCase="'customer'" [id]="id" [module]="module" (createOrUpdate)="onCreateOrUpdate($event)">
+    <app-customer *ngSwitchCase="'customer'" [id]="id" [module]="module" (createOrUpdate)="onCreateOrUpdate($event)" (errorLoad)="onErrorLoad()">
     </app-customer>
-    <app-provider *ngSwitchCase="'provider'" [id]="id" [module]="module" (createOrUpdate)="onCreateOrUpdate($event)">
+    <app-provider *ngSwitchCase="'provider'" [id]="id" [module]="module" (createOrUpdate)="onCreateOrUpdate($event)" (errorLoad)="onErrorLoad()">
     </app-provider>
-    <app-game *ngSwitchCase="'game'" [id]="id" [module]="module" (createOrUpdate)="onCreateOrUpdate($event)">
+    <app-game *ngSwitchCase="'game'" [id]="id" [module]="module" (createOrUpdate)="onCreateOrUpdate($event)" (errorLoad)="onErrorLoad()">
     </app-game>
-    <app-kardex *ngSwitchCase="'kardex'" [id]="id" [module]="module" (createOrUpdate)="onCreateOrUpdate($event)">
+    <app-kardex *ngSwitchCase="'kardex'" [id]="id" [module]="module" (createOrUpdate)="onCreateOrUpdate($event)" (errorLoad)="onErrorLoad()">
     </app-kardex>
 </div>
