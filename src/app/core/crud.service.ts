@@ -22,7 +22,6 @@ export class CrudService extends BaseService {
   }
 
   createOrUpdate<T>(path: string, body: T): Observable<boolean> {
-    console.log(body);
     return this.http.post(`${this.pathService}/${path}`, body, {
       headers: {
         'Content-Type': 'application/json'
