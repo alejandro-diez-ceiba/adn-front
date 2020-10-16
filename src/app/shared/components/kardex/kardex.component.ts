@@ -118,7 +118,8 @@ export class KardexComponent implements OnInit, OnDestroy {
     (this.form.valid)
       ? this.createOrUpdate.emit({
         ...this.form.getRawValue(),
-        id: (this.id === undefined) ? null : this.id
+        id: (this.id === undefined) ? null : this.id,
+        transaction: (this.form.get('transaction').value as Date).getTime()
       })
       : this.form.markAllAsTouched();
   }

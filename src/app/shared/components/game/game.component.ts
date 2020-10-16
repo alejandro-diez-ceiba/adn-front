@@ -74,7 +74,8 @@ export class GameComponent implements OnInit {
     (this.form.valid)
       ? this.createOrUpdate.emit({
         ...this.form.getRawValue(),
-        id: (this.id === undefined) ? null : this.id
+        id: (this.id === undefined) ? null : this.id,
+        launch: (this.form.get('launch').value as Date).getTime()
       })
       : this.form.markAllAsTouched();
   }

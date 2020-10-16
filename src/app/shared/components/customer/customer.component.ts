@@ -66,7 +66,8 @@ export class CustomerComponent implements OnInit {
     (this.form.valid)
       ? this.createOrUpdate.emit({
         ...this.form.getRawValue(),
-        id: (this.id === undefined) ? null : this.id
+        id: (this.id === undefined) ? null : this.id,
+        document: parseInt(this.form.get('document').value, 10)
       })
       : this.form.markAllAsTouched();
   }
