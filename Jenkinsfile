@@ -41,9 +41,15 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('Unit Test') {
             steps {
                 sh 'ng test --browsers ChromeHeadless --progress=false --watch false --code-coverage'
+            }
+        }
+
+        stage('e2e') {
+            steps {
+                sh 'ng e2e'
             }
         }
 
