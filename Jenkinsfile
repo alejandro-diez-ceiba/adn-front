@@ -47,12 +47,6 @@ pipeline {
             }
         }
 
-        stage('e2e') {
-            steps {
-                sh 'ng e2e'
-            }
-        }
-
         stage('Lint') {
             steps {
                 sh 'ng lint'

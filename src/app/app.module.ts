@@ -10,13 +10,15 @@ import { SharedModule } from './shared/shared.module';
 
 import { LoginComponent } from './feature/login/login.component';
 import { ApplicationComponent } from './feature/application/application.component';
+import { DashComponent } from './feature/dash/dash.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ApplicationComponent
+    ApplicationComponent,
+    DashComponent
   ],
   imports: [
     BrowserModule,
