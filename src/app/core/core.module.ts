@@ -10,6 +10,7 @@ import { LoginService } from './login.service';
 import { AuthGuardService } from './auth-guard.service';
 import { CookieService } from 'ngx-cookie-service';
 import { AppGuardService } from './app-guard.service';
+import { KardexService } from './kardex.service';
 
 @NgModule({
   declarations: [],
@@ -26,7 +27,8 @@ import { AppGuardService } from './app-guard.service';
     LoginService,
     AuthGuardService,
     CookieService,
-    AppGuardService
+    AppGuardService,
+    KardexService
   ]
 })
 export class CoreModule { }
