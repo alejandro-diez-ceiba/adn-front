@@ -29,3 +29,4 @@ export * from './mocks/language.mock';
 export * from './mocks/mat-dialog.mock';
 export * from './mocks/login.mock';
 export * from './mocks/cookie.mock';
+export * from './mocks/kardex.mock';
