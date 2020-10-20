@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { LoginModel } from '@app/shared';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { BaseService } from './base.service';
 
 @Injectable()
