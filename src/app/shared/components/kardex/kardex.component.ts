@@ -47,9 +47,9 @@ export class KardexComponent implements OnInit, OnDestroy {
       this.loadById()
     ]).pipe(
       tap(([provider, customer, game, kardex]: [Provider[], Customer[], Game[], Kardex]) => {
-        this.provider = provider;
-        this.customer = customer;
-        this.game = game;
+        this.provider = provider || [];
+        this.customer = customer || [];
+        this.game = game || [];
         this.createForm(kardex);
         this.ready = true;
       })

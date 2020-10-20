@@ -1,0 +1,21 @@
+<div *ngIf="pieReady">
+    <div class="col-media">
+        <mat-card>
+            <mat-card-content>
+                <h2>Entradas y Salidas</h2>
+                <div class="chart">
+                    <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [colors]="pieChartColors" [legend]="pieChartLegend">
+                    </canvas>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-media">
+        <mat-card>
+            <mat-card-content>
+                <h2>Ganancias</h2>
+                <h3>$ {{ pieProfits }}</h3>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

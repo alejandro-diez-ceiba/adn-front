@@ -2,21 +2,39 @@
     <h1 id="title-app">ADI Gamer</h1>
     <mat-card>
         <mat-card-content>
+            <h4 *ngIf="errLogin" id="error-data" class="fail">Nro. Documento o contraseña invalidos intentelo de nuevo</h4>
+            <form [formGroup]="form">
 
-            <mat-form-field class="full-width">
-                <mat-label>Nro. Documento</mat-label>
-                <input matInput>
-            </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Nro. Documento</mat-label>
+                    <input autocomplete="off" matInput formControlName="document" maxlength="11">
+                    <mat-error id="err-document-requerid" *ngIf="form.get('document').hasError('required')">
+                        El campo es obligatorio
+                    </mat-error>
+                    <mat-error *ngIf="form.get('document').hasError('minlength')">
+                        Debe de tener como mínimo 7 caracteres
+                    </mat-error>
+                    <mat-error *ngIf="form.get('document').hasError('pattern')">
+                        El campo solo recibe valores numéricos
+                    </mat-error>
+                </mat-form-field>
 
-            <mat-form-field class="full-width">
-                <mat-label>Contraseña</mat-label>
-                <input matInput>
-            </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Contraseña</mat-label>
+                    <input autocomplete="off" matInput type="password" formControlName="password" maxlength="25">
+                    <mat-error id="err-password-requerid" *ngIf="form.get('password').hasError('required')">
+                        El campo es obligatorio
+                    </mat-error>
+                    <mat-error *ngIf="form.get('password').hasError('minlength')">
+                        Debe de tener como mínimo 6 caracteres
+                    </mat-error>
+                </mat-form-field>
 
-            <button mat-raised-button color="primary">
-                Iniciar Sesión
-            </button>
+                <button mat-raised-button id="btn-login" color="primary" (click)="login()">
+                    Iniciar Sesión
+                </button>
 
+            </form>
         </mat-card-content>
 
     </mat-card>

@@ -6,6 +6,11 @@ import { CrudService } from './crud.service';
 import { TypeDocumentService } from './type-document.service';
 import { PlatformService } from './platform.service';
 import { LanguageService } from './language.service';
+import { LoginService } from './login.service';
+import { AuthGuardService } from './auth-guard.service';
+import { CookieService } from 'ngx-cookie-service';
+import { AppGuardService } from './app-guard.service';
+import { KardexService } from './kardex.service';
 
 @NgModule({
   declarations: [],
@@ -18,7 +23,12 @@ import { LanguageService } from './language.service';
     CrudService,
     TypeDocumentService,
     PlatformService,
-    LanguageService
+    LanguageService,
+    LoginService,
+    AuthGuardService,
+    CookieService,
+    AppGuardService,
+    KardexService
   ]
 })
 export class CoreModule { }

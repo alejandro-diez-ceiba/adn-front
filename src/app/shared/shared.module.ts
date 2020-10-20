@@ -25,6 +25,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ChartsModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -71,7 +73,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ChartsModule
   ]
 })
 export class SharedModule { }

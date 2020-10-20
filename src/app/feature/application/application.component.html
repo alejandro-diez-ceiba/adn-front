@@ -1,11 +1,16 @@
-<div class="navbar primary">
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="pacman" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+<div class="navbar primary" id="navbar-app">
     <div class="nav-container">
-        <button mat-flat-button color="primary">Inicio</button>
+        <button mat-flat-button [routerLink]="['/app/dash']" color="primary">Inicio</button>
         <button mat-flat-button [routerLink]="['/app/user']" color="primary">Usuarios</button>
         <button mat-flat-button [routerLink]="['/app/customer']" color="primary">Clientes</button>
         <button mat-flat-button [routerLink]="['/app/provider']" color="primary">Proveedores</button>
         <button mat-flat-button [routerLink]="['/app/game']" color="primary">Videojuegos</button>
         <button mat-flat-button [routerLink]="['/app/kardex']" color="primary">Kardex</button>
+        <button mat-flat-button (click)="logout()" color="primary">Cerrar Sesión</button>
     </div>
 </div>
 

@@ -13,6 +13,9 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+                        "allowedCommonJsDependencies": [
+                            "chart.js"
+                        ],
                         "outputPath": "dist/adn-front",
                         "index": "src/index.html",
                         "main": "src/main.ts",
@@ -92,7 +95,8 @@
                         "scripts": [],
                         "codeCoverageExclude": [
                             "/**/*mock*.ts",
-                            "/**/*constants*.ts"
+                            "/**/*constants*.ts",
+                            "/**/*service*.ts"
                         ]
                     }
                 },

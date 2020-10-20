@@ -39,7 +39,7 @@ export class CustomerComponent implements OnInit {
       this.loadById()
     ]).pipe(
       tap(([typeDocument, customer]: [TypeDocument[], Customer]) => {
-        this.typeDocument = typeDocument;
+        this.typeDocument = typeDocument || [];
         this.createForm(customer);
         this.ready = true;
       })
