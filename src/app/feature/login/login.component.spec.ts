@@ -11,6 +11,7 @@ import { LoginService } from '@app/core';
 import { CookieService } from 'ngx-cookie-service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 describe('LoginComponent', () => {
 
@@ -32,7 +33,12 @@ describe('LoginComponent', () => {
       declarations: [LoginComponent],
       providers: [
         { provide: LoginService, useValue: loginServiceMock },
-        { provide: CookieService, useValue: cookieServiceMock }
+        { provide: CookieService, useValue: cookieServiceMock },
+        {
+          provide: Router, useValue: {
+            navigate: (path: string) => { }
+          }
+        }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
