@@ -36,4 +36,11 @@ describe('ApplicationComponent', () => {
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
+
+  it('When the logout() method is called, you must call the service to close the session', () => {
+    const callLogout = spyOn(loginServiceMock, 'logout');
+    fixture.detectChanges();
+    component.logout();
+    expect(callLogout).toHaveBeenCalled();
+  });
 });
