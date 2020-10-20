@@ -39,7 +39,7 @@ export class ProviderComponent implements OnInit {
       this.loadById()
     ]).pipe(
       tap(([typeDocument, provider]: [TypeDocument[], Provider]) => {
-        this.typeDocument = typeDocument;
+        this.typeDocument = typeDocument || [];
         this.createForm(provider);
         this.ready = true;
       })

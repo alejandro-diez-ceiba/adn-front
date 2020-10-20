@@ -43,8 +43,8 @@ export class GameComponent implements OnInit {
       this.loadById()
     ]).pipe(
       tap(([platform, language, game]: [Platform[], Language[], Game]) => {
-        this.platform = platform;
-        this.language = language;
+        this.platform = platform || [];
+        this.language = language || [];
         this.createForm(game);
         this.ready = true;
       })

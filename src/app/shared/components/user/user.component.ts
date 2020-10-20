@@ -40,7 +40,7 @@ export class UserComponent implements OnInit {
       this.loadById()
     ]).pipe(
       tap(([typeDocument, user]: [TypeDocument[], User]) => {
-        this.typeDocument = typeDocument;
+        this.typeDocument = typeDocument || [];
         this.createForm(user);
         this.ready = true;
       })
