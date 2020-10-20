@@ -53,10 +53,13 @@ export class CrudComponent implements OnInit, OnDestroy {
   private loadElements(): void {
     this.spinner.show();
     this.crud.findAll(this.module.type).pipe(
-      tap((data) => (this.module.mapData)
-        ? (this.data = data.map((element) => this.module.mapData(element)))
-        : (this.data = data)
-      ),
+      tap((data) => {
+        if (data && data.length > 0) {
+          (this.module.mapData)
+            ? (this.data = data.map((element) => this.module.mapData(element)))
+            : (this.data = data);
+        }
+      }),
       tap(() => this.setErrorLoadElements(false)),
       finalize(() => {
         this.spinner.hide();
