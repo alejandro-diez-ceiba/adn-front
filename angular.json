@@ -95,7 +95,8 @@
                         "scripts": [],
                         "codeCoverageExclude": [
                             "/**/*mock*.ts",
-                            "/**/*constants*.ts"
+                            "/**/*constants*.ts",
+                            "/**/*guard*.ts"
                         ]
                     }
                 },
